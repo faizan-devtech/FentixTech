@@ -30,7 +30,7 @@ const HeaderSection = ({ onApply, goHome, onDashboard }) => {
     { name: "About Us", id: "about" },
     { name: "Our Services", id: "services" },
     { name: "Our Expertise", id: "expertise" },
-    { name: "Projects", id: "projects" },
+    { name: "Our Work", id: "projects" },
   ];
 
   return (
@@ -70,12 +70,12 @@ const HeaderSection = ({ onApply, goHome, onDashboard }) => {
         </ul>
 
         {/* RIGHT ACTIONS (desktop) */}
-        <div className="hidden lg:flex items-center gap-4 ml-8">
+        <div className="hidden lg:flex flex-wrap items-center gap-4 ml-8 ">
 
           {/* Dashboard Button */}
           <button
             onClick={onDashboard}
-            className="px-5 py-2 text-sm font-medium bg-white text-b border-2 border-[#1C39BB] rounded-lg transition-all duration-300 hover:bg-orange-400 hover:text-white hover:border-orange-400 focus:outline-none focus:ring-0"
+            className="px-5 py-2 text-sm font-medium bg-white text-[#1C39BB] border-2 border-[#1C39BB] rounded-lg transition-all duration-300 hover:border-orange-400 hover:text-orange-400 focus:outline-none focus:ring-0"
           >
             Dashboard
           </button>

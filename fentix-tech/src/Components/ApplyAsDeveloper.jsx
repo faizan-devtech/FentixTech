@@ -163,7 +163,7 @@ const ApplyAsDeveloper = () => {
           <button
             type="submit"
             disabled={status.loading}
-            className="w-full bg-[#1A1160] hover:bg-[#150d4d] text-white text-sm  px-4 py-2 rounded-lg font-bold text-sm"
+            className="w-full bg-[#1A1160] hover:bg-[#150d4d] text-white text-sm  px-4 py-2 rounded-lg font-bold "
           >
             {status.loading ? "Processing..." : "Apply Now"}
           </button>

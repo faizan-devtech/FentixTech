@@ -19,10 +19,7 @@ export default function Login({ setToken }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
+        body: JSON.stringify({ email, password }),
       });
 
       let data;
@@ -39,7 +36,6 @@ export default function Login({ setToken }) {
 
       localStorage.setItem("token", data.token);
       setToken(data.token);
-
     } catch (err) {
       setError(err.message);
     } finally {
@@ -49,48 +45,47 @@ export default function Login({ setToken }) {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f5f7fb] px-4">
-      <div className="bg-white shadow-2xl rounded-3xl w-full max-w-md p-8 border border-gray-100">
 
-        <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-[#1A1160] rounded-2xl mx-auto flex items-center justify-center text-white text-2xl font-bold mb-4">
-            A
-          </div>
+      <div className="bg-white shadow-xl rounded-2xl w-full max-w-sm p-6 border border-gray-100">
 
-          <h2 className="text-3xl font-bold text-gray-800">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-800">
             Admin Portal
           </h2>
 
-          <p className="text-gray-500 mt-2">
+          <p className="text-sm text-gray-500 mt-1">
             Secure dashboard access
           </p>
         </div>
 
-        <form onSubmit={handleLogin} className="space-y-5">
+        {/* Form */}
+        <form className="space-y-4" onSubmit={handleLogin}>
 
-          <div>
-            <label className="text-sm font-medium text-gray-700">
+          <div className="space-y-1">
+            <label className="text-xs font-medium text-gray-700">
               Email
             </label>
 
             <input
               type="email"
               required
-              className="w-full mt-2 border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#1A1160]"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[#1A1160]"
               placeholder="Admin Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
-          <div>
-            <label className="text-sm font-medium text-gray-700">
+          <div className="space-y-1">
+            <label className="text-xs font-medium text-gray-700">
               Password
             </label>
 
             <input
               type="password"
               required
-              className="w-full mt-2 border border-gray-300 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#1A1160]"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[#1A1160]"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -98,7 +93,7 @@ export default function Login({ setToken }) {
           </div>
 
           {error && (
-            <div className="bg-red-50 text-red-600 text-sm p-3 rounded-xl border border-red-200">
+            <div className="bg-red-50 text-red-600 text-xs p-2.5 rounded-lg border border-red-200">
               {error}
             </div>
           )}
@@ -106,14 +101,13 @@ export default function Login({ setToken }) {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-3 rounded-xl font-semibold text-white transition ${
-              loading
-                ? "bg-gray-400"
-                : "bg-[#1A1160] hover:bg-[#120c48]"
+            className={`w-full py-2.5 rounded-lg text-sm font-semibold text-white transition ${
+              loading ? "bg-gray-400" : "bg-[#1A1160] hover:bg-[#120c48]"
             }`}
           >
             {loading ? "Signing In..." : "Login"}
           </button>
+
         </form>
       </div>
     </div>

@@ -42,7 +42,7 @@ const NavDropdown = ({ onApply, onApplyDeveloper }) => {
       {/* Trigger Button */}
       <button
   onClick={toggleDropdown}
-  className="flex items-center gap-0.5 px-4 py-2 text-sm font-medium bg-white text-[#1C39BB] border-2 border-[#1C39BB] rounded-lg transition-all duration-300 hover:bg-orange-400 hover:text-white hover:border-orange-400"
+  className="flex items-center gap-0.5 px-4 py-2 text-sm font-medium bg-white text-[#1C39BB] border-2 border-[#1C39BB] rounded-lg transition-all duration-300 hover:text-orange-400 hover:border-orange-400"
 >
   Apply Now
 

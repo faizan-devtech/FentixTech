@@ -26,7 +26,6 @@ const HiringProcess = () => {
     );
   };
 
-  // shared input style
   const inputStyle =
     "w-full px-4 py-3 text-sm border border-gray-300 rounded-sm bg-white " +
     "transition-all duration-300 outline-none " +
@@ -34,36 +33,36 @@ const HiringProcess = () => {
     "focus:scale-[1.02] focus:shadow-lg focus:shadow-[#1C39BB]/10";
 
   return (
-    <section  id="contact" className="  bg-[#f5f5f5] flex items-center justify-center p-6 lg:p-20">
-      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section
+      id="contact"
+      className="bg-[#f5f5f5] flex items-center justify-center px-4 sm:px-6 lg:px-20 py-12 sm:py-16 lg:py-20"
+    >
+      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 items-center">
 
         {/* LEFT */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-[#1C39BB] rounded-full"></span>
-            <p className="text-gray-600 uppercase tracking-widest text-sm font-semibold">
-              About Us
-            </p>
-          </div>
+        <div className="space-y-5 sm:space-y-6 text-center md:text-left">
 
-          <h1 className="text-5xl md:text-5xl font-semibold text-slate-900 leading-tight">
-            Our journey of <br /> building success
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900">
+            Contact Us
           </h1>
 
-          <p className="text-gray-500 text-lg max-w-md">
-            FentixTech is a leading IT service provider dedicated to helping businesses grow.
-          </p>
+          <h1 className="text-2xl sm:text-3xl md:text-3xl font-semibold text-slate-900 leading-tight">
+            Let’s build your digital solution
+          </h1>
 
-          <button className="bg-[#1C39BB] text-white text-sm px-4 py-3 rounded-lg font-bold shadow-lg shadow-blue-200 hover:bg-blue-800 transition-all">
-            About FentixTech
-          </button>
+          <p className="text-gray-800 text-sm sm:text-base lg:text-lg max-w-md mx-auto md:mx-0 leading-relaxed">
+            FentixTech builds modern web, software, and UI/UX solutions tailored for startups
+            and businesses with a focus on performance and scalability. Share your project details
+            with us. Our team will respond with a tailored strategy, clear timeline, and the best
+            technical approach to bring your idea to life.
+          </p>
         </div>
 
         {/* RIGHT FORM */}
         <div className="flex justify-center md:justify-end">
-          <div className="w-full max-w-sm p-6 bg-white border border-gray-300 rounded-xl shadow-sm">
+          <div className="w-full max-w-sm sm:max-w-md p-5 sm:p-6 bg-white border border-gray-300 rounded-xl shadow-sm">
 
-            <h2 className="text-2xl font-bold mb-6 text-black text-center">
+            <h2 className="text-xl sm:text-2xl font-bold mb-5 sm:mb-6 text-black text-center">
               Contact Us
             </h2>
 
@@ -74,12 +73,7 @@ const HiringProcess = () => {
                 <label className="block text-black font-semibold text-xs mb-1">
                   Full Name
                 </label>
-                <input
-                  type="text"
-                  name="from_name"
-                  required
-                  className={inputStyle}
-                />
+                <input type="text" name="from_name" required className={inputStyle} />
               </div>
 
               {/* Email */}
@@ -87,33 +81,22 @@ const HiringProcess = () => {
                 <label className="block text-black font-semibold text-xs mb-1">
                   Email
                 </label>
-                <input
-                  type="email"
-                  name="reply_to"
-                  required
-                  className={inputStyle}
-                />
+                <input type="email" name="reply_to" required className={inputStyle} />
               </div>
 
               {/* Message */}
               <div>
-                <label className=" block text-black font-semibold text-xs mb-1   ">
+                <label className="block text-black font-semibold text-xs mb-1">
                   Message
                 </label>
-                <textarea
-                  name="message"
-                  rows="3"
-                  required
-                  className={inputStyle}
-                />
+                <textarea name="message" rows="3" required className={inputStyle} />
               </div>
 
               {/* Submit */}
               <button
                 type="submit"
-                className=" w-full px-6 py-3 text-sm font-semibold text-white bg-[#1C39BB]
-             rounded-lg hover:bg-blue-800 transition-all shadow-sm
-"
+                className="w-full px-6 py-3 text-sm font-semibold text-white bg-[#1C39BB]
+                rounded-lg hover:bg-blue-800 transition-all shadow-sm"
               >
                 SUBMIT
               </button>

@@ -8,8 +8,6 @@ import {
   faFileCode,
   faMicrochip,
   faBullhorn,
-  faPalette,
-  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 
 const ServicesSection = () => {
@@ -44,7 +42,6 @@ const ServicesSection = () => {
       title: "Digital Marketing",
       desc: "Data-driven marketing strategies to increase visibility, engage audiences, and drive measurable growth.",
     },
-     
   ];
 
   return (
@@ -53,32 +50,29 @@ const ServicesSection = () => {
       className="w-full py-20 px-6 md:px-12 lg:px-24 bg-white overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
-
-        {/* Heading */}
         
-        <h1 className="text-black text-4xl md:text-5xl font-semibold">
-          What We Are Offering
+        {/* Heading */}
+        <h1 className="text-black text-4xl md:text-5xl font-bold text-center leading-tight">
+          Our Services
         </h1>
 
-        <p className="text-gray-700 text-lg max-w-3xl mt-5 leading-relaxed">
+        <p className="text-gray-700 text-lg max-w-3xl mt-5 leading-relaxed text-center mx-auto">
           FentixTech is a dynamic technology solutions provider dedicated to
           helping businesses navigate and thrive in the digital era.
         </p>
 
-        {/* Cards */}
-        <div className="grid :grid-cols-2 lg:grid-cols-3 gap-12 mt-16">
+        {/* Cards (FIXED RESPONSIVE GRID) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mt-16">
           {services.map((service, index) => (
             <div
               key={index}
               className="bg-white rounded-xl shadow-md p-6 border-[1.4px] border-[#1C39BB] hover:border-blue-500 hover:-translate-y-2 transition-all duration-300"
             >
-              {/* Smaller Icons */}
               <FontAwesomeIcon
                 icon={service.icon}
                 className="text-[#1C39BB] text-3xl mb-4"
               />
 
-              {/* One-Line Title */}
               <h3 className="font-bold text-black text-lg mb-3 whitespace-nowrap overflow-hidden text-ellipsis">
                 {service.title}
               </h3>

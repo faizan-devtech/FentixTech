@@ -14,10 +14,6 @@ import {
   faSwift,
   faAndroid,
   faApple,
-  faAws,
-  faDocker,
-  faMicrosoft,
-  faJenkins,
 } from "@fortawesome/free-brands-svg-icons";
 
 import {
@@ -30,9 +26,7 @@ import {
   faServer,
   faPenNib,
   faMicrochip,
-  faFire,
   faLeaf,
-  faBoxOpen,
 } from "@fortawesome/free-solid-svg-icons";
 
 const SkillSection = () => {
@@ -133,84 +127,93 @@ const SkillSection = () => {
         ],
       },
     ],
-
-     
   };
 
   const tabs = Object.keys(skillsData);
 
   return (
-    <section
-      id="expertise"
-      className="w-full bg-[#f5f5f5] py-20"
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="expertise" className="w-full bg-[#f5f5f5] py-16 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* HEADER */}
-        <div className="mb-16">
-          
-
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 mb-5 leading-tight">
-            Technologies we use.
+        <div className="mb-12 md:mb-16 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl  font-bold text-gray-900 leading-tight">
+            Our Expertise
           </h2>
 
-          <p className="max-w-3xl text-lg md:text-xl text-gray-600 leading-relaxed">
-            Hire from our pool of 60+ specialized experts in web, mobile,
-            and software engineering, specializing in the latest
-            technologies and frameworks ready to scale your development
-            teams effortlessly.
+          <p className="max-w-3xl mx-auto mt-5 text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
+         Collaborate with a vetted pool of specialized engineering talent across web, mobile, and software domains. Our experts bring deep proficiency in modern frameworks and scalable systems, empowering businesses to rapidly scale development teams and achieve faster, high-quality product delivery.”
           </p>
         </div>
 
         {/* MAIN LAYOUT */}
-        <div className="flex flex-col lg:flex-row gap-12 border-t border-gray-200 pt-12">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 border-t border-gray-200 pt-10 md:pt-12">
 
           {/* SIDEBAR */}
-          <div className="w-full lg:w-70 lg:shrink-0">
-            <div className="flex flex-col gap-3">
-
+          <div className="w-full lg:w-72 shrink-0">
+            <div className="
+              flex lg:flex-col 
+              gap-3 
+              overflow-x-auto lg:overflow-visible 
+              pb-3 lg:pb-0
+              scrollbar-hide
+            ">
               {tabs.map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`text-left px-6 py-4 rounded-lg text-base font-medium transition-all duration-300 ${
-                    activeTab === tab
-                      ? "bg-linear-to-r from-[#E8EBFA] to-white text-black border-l-4 border-[#1C39BB] shadow-sm"
-                      : "text-gray-700 hover:bg-white"
-                  }`}
+                  className={`whitespace-nowrap lg:whitespace-normal
+                    px-5 py-3 
+                    rounded-full 
+                    text-sm md:text-base 
+                    font-medium 
+                    transition-all duration-300 
+                    shrink-0 lg:shrink
+                    ${
+                      activeTab === tab
+                        ? "bg-linear-to-r from-[#E8EBFA] to-white text-black border-l-4 border-[#1C39BB] shadow-sm"
+                        : "text-gray-700 hover:bg-white"
+                    }
+                  `}
                 >
                   {tab}
                 </button>
               ))}
-
             </div>
           </div>
 
           {/* CONTENT */}
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
 
             {skillsData[activeTab].map((section, idx) => (
-              <div key={idx} className="mb-14">
+              <div key={idx} className="mb-10 md:mb-14">
 
-                <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-6 md:mb-8">
                   {section.category}
                 </h3>
 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-3 md:gap-4">
 
                   {section.items.map((skill) => (
                     <div
                       key={skill.name}
-                      className="group flex items-center gap-3 bg-white hover:bg-black px-5 h-14 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                      className="group flex items-center gap-3 bg-white hover:bg-black
+                      px-4 md:px-5
+                      h-12 md:h-14
+                      rounded-full
+                      shadow-sm hover:shadow-lg
+                      transition-all duration-300
+                      hover:-translate-y-1
+                      cursor-pointer"
                     >
-                      <div className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100">
+                      <div className="w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-gray-100">
                         <FontAwesomeIcon
                           icon={skill.icon}
-                          className="text-sm text-gray-600 group-hover:text-black"
+                          className="text-xs md:text-sm text-gray-600 group-hover:text-black"
                         />
                       </div>
 
-                      <span className="text-sm md:text-base font-medium text-gray-900 group-hover:text-white transition-colors duration-300">
+                      <span className="text-xs sm:text-sm md:text-base font-medium text-gray-900 group-hover:text-white transition-colors duration-300">
                         {skill.name}
                       </span>
                     </div>

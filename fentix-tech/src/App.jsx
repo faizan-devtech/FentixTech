@@ -12,6 +12,7 @@ import HiringProcess from "./Components/HiringProcess";
 import ApplyAsDeveloper from "./Components/ApplyAsDeveloper";
 import FooterSection from "./Components/FooterSection";
 import AdminDashboard from "./Components/AdminDashboard";
+import WhatsAppFloat from "./Components/whatsAppFloat";
 
 const App = () => {
   const [isApplyView, setIsApplyView] = useState(false);
@@ -41,7 +42,7 @@ const App = () => {
   };
 
   return (
-    <div className=" ">
+    <div >
 
       {/* HEADER */}
       <HeaderSection
@@ -104,6 +105,7 @@ const App = () => {
             <ProjectSection />
             <OurTalent />
             <HiringProcess />
+            <WhatsAppFloat />
             <FooterSection />
           </>
         )}

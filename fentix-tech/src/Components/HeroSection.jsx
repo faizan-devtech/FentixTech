@@ -1,4 +1,5 @@
  import React from 'react';
+import NavDropdown from './NavDropdown';
 
 const HeroSection = () => {
   const handleScroll = (id) => {
@@ -35,7 +36,7 @@ const HeroSection = () => {
       <div className="relative z-10 flex flex-col items-center text-center max-w-4xl px-2 sm:px-4 md:px-6">
 
         {/* Heading (responsive only) */}
-        <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-semibold leading-tight tracking-tight">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold leading-tight tracking-tight">
           <span className="text-orange-500">Accelerating Business</span>
           <br />
           <span className="text-gray-900">
@@ -54,11 +55,11 @@ const HeroSection = () => {
 
           <button
             onClick={() => handleScroll('contact')}
-            className="bg-[#1C39BB] text-white hover:bg-[#162f99] transform hover:scale-105 transition-all duration-300 shadow-lg px-6 py-3.5 text-base font-semibold rounded-xl"
+            className="  flex items-center gap-0.5 px-4 py-2 text-sm font-medium bg-white text-[#1C39BB] border-2 border-[#1C39BB] rounded-lg transition-all duration-300 hover:text-orange-400 hover:border-orange-400"
           >
             Contact Us
           </button>
-
+<NavDropdown />
         </div>
 
       </div>
