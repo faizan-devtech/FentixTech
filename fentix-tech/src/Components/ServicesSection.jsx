@@ -44,16 +44,7 @@ const ServicesSection = () => {
       title: "Digital Marketing",
       desc: "Data-driven marketing strategies to increase visibility, engage audiences, and drive measurable growth.",
     },
-    {
-      icon: faPalette,
-      title: "Branding",
-      desc: "Building a strong and unique brand identity that resonates with customers and builds long-term trust.",
-    },
-    {
-      icon: faUsers,
-      title: "Staff Augmentation",
-      desc: "Skilled professionals seamlessly integrate with your team to scale workforce and accelerate project delivery.",
-    },
+     
   ];
 
   return (
@@ -64,13 +55,7 @@ const ServicesSection = () => {
       <div className="max-w-7xl mx-auto">
 
         {/* Heading */}
-        <div className="flex items-center gap-2 mb-4">
-          <span className="w-2 h-2 bg-blue-700 rounded-full"></span>
-          <p className="text-black uppercase tracking-wider text-sm">
-            Our Services
-          </p>
-        </div>
-
+        
         <h1 className="text-black text-4xl md:text-5xl font-semibold">
           What We Are Offering
         </h1>
@@ -81,16 +66,16 @@ const ServicesSection = () => {
         </p>
 
         {/* Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+        <div className="grid :grid-cols-2 lg:grid-cols-3 gap-12 mt-16">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-md p-6 border-[1.4px] border-black hover:border-blue-500 hover:-translate-y-2 transition-all duration-300"
+              className="bg-white rounded-xl shadow-md p-6 border-[1.4px] border-[#1C39BB] hover:border-blue-500 hover:-translate-y-2 transition-all duration-300"
             >
               {/* Smaller Icons */}
               <FontAwesomeIcon
                 icon={service.icon}
-                className="text-black text-3xl mb-4"
+                className="text-[#1C39BB] text-3xl mb-4"
               />
 
               {/* One-Line Title */}

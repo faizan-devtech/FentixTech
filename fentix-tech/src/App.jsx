@@ -7,7 +7,6 @@ import AboutSection from "./Components/AboutSection";
 import ServicesSection from "./Components/ServicesSection";
 import ExpertiseSection from "./Components/ExpertiseSection";
 import ProjectSection from "./Components/ProjectSection";
-import StaffAugmentation from "./Components/StaffAugmentation";
 import OurTalent from "./Components/OurTalent";
 import HiringProcess from "./Components/HiringProcess";
 import ApplyAsDeveloper from "./Components/ApplyAsDeveloper";
@@ -103,7 +102,6 @@ const App = () => {
             <div id="services"><ServicesSection /></div>
             <div id="expertise"><ExpertiseSection /></div>
             <ProjectSection />
-            <StaffAugmentation />
             <OurTalent />
             <HiringProcess />
             <FooterSection />

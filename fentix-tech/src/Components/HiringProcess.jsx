@@ -46,7 +46,7 @@ const HiringProcess = () => {
             </p>
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-bold text-slate-900 leading-tight">
+          <h1 className="text-5xl md:text-5xl font-semibold text-slate-900 leading-tight">
             Our journey of <br /> building success
           </h1>
 

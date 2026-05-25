@@ -6,7 +6,7 @@ const AboutSection = () => {
       
       {/* 🔷 Top Heading */}
       <div className="max-w-7xl mx-auto text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold">
+        <h1 className="text-3xl md:text-5xl font-semibold">
           About Us
         </h1>
         <p className="text-gray-600 mt-3 text-sm md:text-base max-w-2xl mx-auto">
@@ -19,7 +19,7 @@ const AboutSection = () => {
         
         {/* 📄 Left: Text Content */}
         <div className="w-full lg:w-1/2">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-4">
             Who We Are
           </h2>
 

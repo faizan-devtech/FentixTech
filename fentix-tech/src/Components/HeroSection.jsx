@@ -35,7 +35,7 @@ const HeroSection = () => {
       <div className="relative z-10 flex flex-col items-center text-center max-w-4xl px-2 sm:px-4 md:px-6">
 
         {/* Heading (responsive only) */}
-        <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold leading-tight tracking-tight">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-semibold leading-tight tracking-tight">
           <span className="text-orange-500">Accelerating Business</span>
           <br />
           <span className="text-gray-900">

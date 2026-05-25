@@ -134,25 +134,7 @@ const SkillSection = () => {
       },
     ],
 
-    "Cloud & DevOps": [
-      {
-        category: "DevOps",
-        items: [
-          { name: "Docker", icon: faDocker },
-          { name: "Kubernetes", icon: faCloud },
-          { name: "Gradle", icon: faBoxOpen },
-          { name: "Jenkins", icon: faJenkins },
-        ],
-      },
-      {
-        category: "Cloud",
-        items: [
-          { name: "AWS", icon: faAws },
-          { name: "Azure", icon: faMicrosoft },
-          { name: "Firebase", icon: faFire },
-        ],
-      },
-    ],
+     
   };
 
   const tabs = Object.keys(skillsData);
@@ -166,13 +148,7 @@ const SkillSection = () => {
 
         {/* HEADER */}
         <div className="mb-16">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#1C39BB]"></span>
-
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-700">
-              Our Expertise
-            </span>
-          </div>
+          
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-gray-900 mb-5 leading-tight">
             Technologies we use.
@@ -197,7 +173,7 @@ const SkillSection = () => {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`text-left px-6 py-4 rounded-full text-base font-medium transition-all duration-300 ${
+                  className={`text-left px-6 py-4 rounded-lg text-base font-medium transition-all duration-300 ${
                     activeTab === tab
                       ? "bg-linear-to-r from-[#E8EBFA] to-white text-black border-l-4 border-[#1C39BB] shadow-sm"
                       : "text-gray-700 hover:bg-white"
@@ -225,7 +201,7 @@ const SkillSection = () => {
                   {section.items.map((skill) => (
                     <div
                       key={skill.name}
-                      className="group flex items-center gap-3 bg-white hover:bg-black px-5 h-14 rounded-full shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                      className="group flex items-center gap-3 bg-white hover:bg-black px-5 h-14 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                     >
                       <div className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100">
                         <FontAwesomeIcon

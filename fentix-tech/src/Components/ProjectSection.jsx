@@ -71,11 +71,9 @@ const ProjectSection = () => {
 
         {/* Heading */}
         <div className="text-center mb-12">
-          <span className="text-blue-700 uppercase tracking-widest text-sm font-semibold">
-            Our Work
-          </span>
+           
 
-          <h2 className="text-4xl md:text-5xl font-bold mt-3">
+          <h2 className="text-4xl md:text-5xl font-semibold mt-3">
             Featured Projects
           </h2>
 

@@ -48,14 +48,9 @@ const OurTalent = () => {
         {/* Header */}
         <div className="flex justify-between items-end mb-12">
           <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#1C39BB]"></span>
-              <p className="text-gray-500 text-xs font-medium uppercase tracking-widest">
-                Top Professionals
-              </p>
-            </div>
+            
 
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight">
               Meet Our Talent
             </h2>
           </div>
