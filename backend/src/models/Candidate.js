@@ -7,8 +7,6 @@ const candidateSchema = new mongoose.Schema(
     email: String,
     whatsapp: String,
     domain: String,
-    university: String,
-
     resumePath: String,
 
     offerLetterUrl: String,

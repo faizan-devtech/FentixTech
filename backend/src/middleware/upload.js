@@ -10,14 +10,19 @@ const createFolder = (folderPath) => {
 };
 
 createFolder("uploads/cvs");
+createFolder("uploads/offers");
 createFolder("uploads/others");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     try {
-      if (file.fieldname === "resume") {
+      if (file.fieldname === "resume" || file.fieldname === "cv") {
         cb(null, "uploads/cvs");
-      } else {
+      } 
+      else if (file.fieldname === "offer") {
+        cb(null, "uploads/offers");
+      } 
+      else {
         cb(null, "uploads/others");
       }
     } catch (err) {
@@ -37,7 +42,6 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  // 🔥 safety check (optional but production level)
   const allowed = [
     "application/pdf",
     "image/png",
@@ -55,7 +59,7 @@ const upload = multer({
   storage,
   fileFilter,
   limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB limit
+    fileSize: 5 * 1024 * 1024,
   },
 });
 

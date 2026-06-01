@@ -19,17 +19,15 @@ app.use(morgan("dev"));
 // =======================
 // STATIC FILES (FIXED)
 // =======================
- app.use(
-  "/uploads",
-  express.static(
-    path.join(__dirname, "uploads")
-  )
-);
+ 
+ 
 app.use(
   "/uploads",
-  express.static(path.join(__dirname, "uploads"))
+  express.static(
+    path.join(process.cwd(), "uploads")
+  )
 );
-
+ 
 // =======================
 // ROUTES
 // =======================

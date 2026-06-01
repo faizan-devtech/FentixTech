@@ -3,6 +3,7 @@ const { generateOfferLetter } = require("../utils/offerLetter");
 
 // APPLY CANDIDATE
 exports.applyCandidate = async (req, res) => {
+  resumePath: `/uploads/cvs/${req.file.filename}`
   try {
     const {
       firstName,
@@ -10,14 +11,10 @@ exports.applyCandidate = async (req, res) => {
       email,
       whatsapp,
       domain,
-      university,
+        
     } = req.body;
-
-    if (!firstName || !email || !domain || !university) {
-      return res.status(400).json({
-        message: "Required fields missing",
-      });
-    }
+ 
+    
 
     const candidate = await Candidate.create({
       firstName,
@@ -25,7 +22,6 @@ exports.applyCandidate = async (req, res) => {
       email,
       whatsapp,
       domain,
-      university,
       resumePath: req.file?.path || null,
       status: "pending",
     });
@@ -125,12 +121,9 @@ exports.deleteCandidate = async (req, res) => {
     });
   }
 };
-
-// SEND OFFER
-exports.sendOffer = async (req, res) => {
+  exports.sendOffer = async (req, res) => {
   try {
-    const candidate =
-      await Candidate.findById(req.params.id);
+    const candidate = await Candidate.findById(req.params.id);
 
     if (!candidate) {
       return res.status(404).json({
@@ -138,9 +131,16 @@ exports.sendOffer = async (req, res) => {
       });
     }
 
-    const offerUrl =
-      await generateOfferLetter(candidate);
+    // 🔥 generate offer letter
+    const offerUrl = await generateOfferLetter(candidate);
 
+    if (!offerUrl) {
+      return res.status(500).json({
+        message: "Offer generation failed (no file returned)",
+      });
+    }
+
+    // 🔥 ensure correct URL format
     candidate.offerLetterUrl = offerUrl;
     candidate.status = "accepted";
 
@@ -151,6 +151,7 @@ exports.sendOffer = async (req, res) => {
       offerLetterUrl: offerUrl,
       candidate,
     });
+
   } catch (err) {
     res.status(500).json({
       message: "Offer generation failed",

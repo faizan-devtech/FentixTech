@@ -3,239 +3,232 @@ const fs = require("fs");
 const puppeteer = require("puppeteer");
 
 const generateOfferLetter = async (candidate) => {
-  const fileName = `offer-${candidate._id}.pdf`;
+  let browser;
 
-  const uploadDir = path.join(
-    __dirname,
-    "../uploads/offers"
-  );
+  try {
+    const fileName = `offer-${candidate._id}.pdf`;
 
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, {
-      recursive: true,
-    });
-  }
+    // ✅ REAL PATH -> backend/uploads/offers
+    const uploadDir = path.join(
+      process.cwd(),
+      "uploads",
+      "offers"
+    );
 
-  const filePath = path.join(
-    uploadDir,
-    fileName
-  );
+    const filePath = path.join(uploadDir, fileName);
 
-  // FULL YOUR HTML + CSS (DYNAMIC FIELDS ADDED)
-  const html = `
+    // create folder if missing
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+
+    console.log("Offer folder:", uploadDir);
+    console.log("Saving PDF:", filePath);
+
+    const today = new Date();
+
+    const html = `
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"/>
 <title>Offer Letter</title>
 
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook&display=swap" rel="stylesheet">
-
 <style>
-:root {
-    --persian-blue: #1C39BB;
-    --persian-orange: #d87326;
+body{
+  font-family:Arial,sans-serif;
+  margin:0;
+  padding:0;
+  background:#fff;
 }
 
-* {
-    color: black;
-    font-family: Arial, sans-serif;
+.container{
+  width:800px;
+  margin:auto;
+  padding:40px;
+  border:10px solid #1C39BB;
+  box-sizing:border-box;
 }
 
-body {
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+.header{
+  text-align:center;
+  margin-bottom:30px;
 }
 
-.container {
-    width: 794px;
-    height: 1123px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.company{
+  font-size:28px;
+  font-weight:bold;
+  color:#1C39BB;
 }
 
-.inner {
-    background: linear-gradient(140deg, var(--persian-blue) 9%, white 9.2%);
-    border: 15px solid var(--persian-blue);
-    padding: 5px;
-    width: 100%;
-    height: 100%;
+.title{
+  font-size:20px;
+  color:#d87326;
+  margin-top:10px;
 }
 
-.content {
-    padding: 20px;
-    text-align: center;
+.name{
+  font-size:22px;
+  font-weight:bold;
+  color:#1C39BB;
+  text-transform:uppercase;
+  margin:20px 0;
+  text-align:center;
 }
 
-.logo-icon {
-    width: 55px;
+.content{
+  font-size:14px;
+  line-height:1.7;
 }
 
-.company-name {
-    color: var(--persian-blue);
-    font-weight: 900;
+.highlight{
+  font-weight:bold;
+  color:#1C39BB;
 }
 
-.company-name span {
-    color: var(--persian-orange);
+ul{
+  margin-top:10px;
 }
 
-.title {
-    font-size: 28px;
-    color: var(--persian-orange);
-    font-weight: bold;
+.footer{
+  margin-top:40px;
+  display:flex;
+  justify-content:space-between;
 }
 
-.text-small {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.name {
-    font-size: 22px;
-    color: var(--persian-blue);
-    border-bottom: 1px solid #ccc;
-    display: inline-block;
-    text-transform: uppercase;
-    margin: 10px 0;
-}
-
-.highlight {
-    color: var(--persian-blue);
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.Location {
-    font-size: 14px;
-    font-style: italic;
-}
-
-.section {
-    text-align: left;
-    margin-top: 15px;
-}
-
-ul {
-    font-size: 14px;
-}
-
-.signature-section {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 30px;
-    margin-top: 40px;
-}
-
-.stamp img {
-    width: 120px;
+.stamp{
+  text-align:right;
+  margin-top:30px;
+  font-weight:bold;
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
-<div class="inner">
+
+<div class="header">
+<div class="company">FENTIX TECH</div>
+<div class="title">INTERNSHIP OFFER LETTER</div>
+</div>
+
 <div class="content">
 
-<header>
-    <img src="https://i.imgur.com/your-logo.png" class="logo-icon" />
-    <div class="company-name">FENTIX<span>TECH</span></div>
-    <div class="title">INTERNSHIP OFFER LETTER</div>
-</header>
+<p>Dear Candidate,</p>
 
-<main>
-    <div class="text-small">THIS LETTER CONFIRMS THE OFFER OF INTERNSHIP TO</div>
+<p>
+We are pleased to offer you the internship position at
+<span class="highlight">FentixTech</span>.
+</p>
 
-    <div class="name">
-        ${candidate.firstName} ${candidate.lastName}
-    </div>
-
-    <div class="text-small">
-        We are pleased to offer you the position of
-    </div>
-
-    <div class="highlight">
-        ${candidate.domain}
-    </div>
-
-    <div class="Location">
-        at FentixTech, Islamabad, Pakistan.
-    </div>
-
-    <div class="section">
-        <strong>Internship Details:</strong>
-        <ul>
-            <li>Start Date: ${new Date().toLocaleDateString()}</li>
-            <li>Duration: 2 Months</li>
-            <li>Location: Remote</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <strong>Terms & Conditions:</strong>
-        <ul>
-            <li>Maintain professionalism and discipline.</li>
-            <li>Follow company rules and policies.</li>
-            <li>Confidentiality must be maintained.</li>
-            <li>Performance will be evaluated.</li>
-        </ul>
-    </div>
-</main>
-
-<footer>
-    <p>
-        "We look forward to your contribution and wish you success"
-    </p>
-
-    <div class="signature-section">
-        <div>
-            <p><strong>Program Manager</strong></p>
-        </div>
-
-        <div>
-            <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
-        </div>
-    </div>
-
-    <div class="stamp">
-        <img src="https://i.imgur.com/stamp.png" />
-    </div>
-</footer>
-
+<div class="name">
+${candidate.firstName} ${candidate.lastName}
 </div>
+
+<p>
+Position:
+<span class="highlight">${candidate.domain}</span>
+</p>
+
+<p>
+Location: Remote (Pakistan)
+</p>
+
+<h3>Internship Details</h3>
+
+<ul>
+<li>Start Date: ${today.toDateString()}</li>
+<li>Duration: 2 Months</li>
+<li>Type: Remote Internship</li>
+</ul>
+
+<h3>Terms & Conditions</h3>
+
+<ul>
+<li>Maintain discipline and professionalism</li>
+<li>Follow company policies</li>
+<li>Performance evaluation required</li>
+<li>Confidentiality must be maintained</li>
+</ul>
+
+<p>
+We are excited to welcome you to our team.
+</p>
+
+<div class="footer">
+<div>
+<p><strong>Program Manager</strong></p>
+</div>
+
+<div>
+<p><strong>Date:</strong> ${today.toLocaleString()}</p>
 </div>
 </div>
 
+<div class="stamp">
+FENTIX TECH OFFICIAL
+</div>
+
+</div>
+</div>
 </body>
 </html>
-  `;
+`;
 
-  const browser = await puppeteer.launch({
-    headless: "new",
-  });
+    // ✅ Safe Puppeteer
+    browser = await puppeteer.launch({
+      headless: true,
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+      ],
+    });
 
-  const page = await browser.newPage();
+    const page = await browser.newPage();
 
-  await page.setContent(html, {
-    waitUntil: "networkidle0",
-  });
+    await page.setContent(html, {
+      waitUntil: "networkidle0",
+    });
 
-  await page.pdf({
-    path: filePath,
-    format: "A4",
-    printBackground: true,
-  });
+    await page.pdf({
+      path: filePath,
+      format: "A4",
+      printBackground: true,
+      margin: {
+        top: "20px",
+        bottom: "20px",
+        left: "20px",
+        right: "20px",
+      },
+    });
 
-  await browser.close();
+    // close browser
+    await browser.close();
 
-  return `/uploads/offers/${fileName}`;
+    // verify file
+    if (!fs.existsSync(filePath)) {
+      throw new Error("PDF generation failed");
+    }
+
+    console.log("Offer created:", filePath);
+
+    // public URL
+     return `/uploads/offers/${fileName}`;
+
+  } catch (error) {
+    console.error(
+      "Offer Letter Error:",
+      error.message
+    );
+
+    if (browser) {
+      await browser.close();
+    }
+
+    throw error;
+  }
 };
 
-module.exports = { generateOfferLetter };
+module.exports = {
+  generateOfferLetter,
+};
