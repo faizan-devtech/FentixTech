@@ -53,7 +53,7 @@ const OurTalent = () => {
         <div className="flex justify-center items-end mb-10 sm:mb-12">
           <div className="space-y-2 text-center">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-              Meet Our Talent
+              Team FentixTech
             </h2>
           </div>
         </div>

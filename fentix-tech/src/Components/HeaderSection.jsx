@@ -28,13 +28,14 @@ const HeaderSection = ({ onApply, goHome, onDashboard }) => {
   const navLinks = [
     { name: "Home", id: "home" },
     { name: "About Us", id: "about" },
-    { name: "Our Services", id: "services" },
-    { name: "Our Expertise", id: "expertise" },
-    { name: "Our Work", id: "projects" },
+      { name: "Internship", id: "internship" },
+      { name: "Services", id: "services" },
+    { name: " Expertise", id: "expertise" },
+    { name: "Projects", id: "projects" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 h-16 bg-white border border-white shadow-sm z-50">
+    <nav className="fixed top-0 left-0 right-0 h-16 bg-white border border-white shadow-sm  z-50">
 
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center">
 
@@ -56,12 +57,12 @@ const HeaderSection = ({ onApply, goHome, onDashboard }) => {
         </div>
 
         {/* NAV LINKS (desktop) */}
-        <ul className="hidden lg:flex items-center gap-10 ml-auto text-base font-medium text-gray-800">
+        <ul className=" cursor-pointer hidden lg:flex items-center gap-10 ml-auto text-base  font-medium text-gray-800">
           {navLinks.map((link) => (
             <li key={link.id}>
               <button
                 onClick={() => handleScroll(link.id)}
-                className="hover:text-orange-500 transition duration-200"
+                className="hover:text-orange-500 transition duration-200 cursor-pointer"
               >
                 {link.name}
               </button>
@@ -75,7 +76,7 @@ const HeaderSection = ({ onApply, goHome, onDashboard }) => {
           {/* Dashboard Button */}
           <button
             onClick={onDashboard}
-            className="px-5 py-2 text-sm font-medium bg-white text-[#1C39BB] border-2 border-[#1C39BB] rounded-lg transition-all duration-300 hover:border-orange-400 hover:text-orange-400 focus:outline-none focus:ring-0"
+            className=" cursor-pointer px-5 py-2 text-sm font-medium bg-white text-orange-400 border-2 border-orange-400 rounded-lg transition-all duration-300 hover:border-[#1C39BB] hover:text-[#1C39BB] focus:outline-none focus:ring-0"
           >
             Dashboard
           </button>
@@ -86,7 +87,7 @@ const HeaderSection = ({ onApply, goHome, onDashboard }) => {
         {/* MOBILE MENU BUTTON */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden ml-auto flex flex-col justify-center items-center w-10 h-10 focus:outline-none"
+          className=" cursor-pointer lg:hidden ml-auto flex flex-col justify-center items-center w-10 h-10 focus:outline-none"
         >
           <span className="w-6 h-0.5 bg-gray-700 mb-1"></span>
           <span className="w-6 h-0.5 bg-gray-700 mb-1"></span>
@@ -120,9 +121,9 @@ const HeaderSection = ({ onApply, goHome, onDashboard }) => {
               Dashboard
             </button>
 
-            <div className="mt-2">
+     
               <NavDropdown onApply={onApply} />
-            </div>
+           
 
           </ul>
         </div>

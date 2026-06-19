@@ -3,6 +3,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const path = require("path");
 
+
+
 const candidateRoutes = require("./routes/candidate.routes");
 const adminRoutes = require("./routes/admin.routes");
 

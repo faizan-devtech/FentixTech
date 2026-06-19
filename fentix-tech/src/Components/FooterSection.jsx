@@ -10,7 +10,7 @@ const FooterSection = ({ goHome }) => {
   };
 
   const footerLinks = {
-    About: ["About", "Our Team", "Careers", "Clients", "Contact"],
+    About: ["Home", "About", "Services", "Internship", "Expertise", "Contact"],
     Services: [
       "Web Development",
       "Mobile App Development",

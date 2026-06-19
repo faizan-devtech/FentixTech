@@ -27,10 +27,10 @@ const HiringProcess = () => {
   };
 
   const inputStyle =
-    "w-full px-4 py-3 text-sm border border-gray-300 rounded-sm bg-white " +
+    "w-full px-3 py-2 text-sm border border-gray-300 rounded-sm bg-white " +
     "transition-all duration-300 outline-none " +
     "focus:border-[#1C39BB] focus:ring-4 focus:ring-[#1C39BB]/15 " +
-    "focus:scale-[1.02] focus:shadow-lg focus:shadow-[#1C39BB]/10";
+    "focus:shadow-lg focus:shadow-[#1C39BB]/10";
 
   return (
     <section
@@ -46,7 +46,7 @@ const HiringProcess = () => {
             Contact Us
           </h1>
 
-          <h1 className="text-2xl sm:text-3xl md:text-3xl font-semibold text-slate-900 leading-tight">
+          <h1 className="text-2xl sm:text-3xl font-semibold text-slate-900 leading-tight">
             Let’s build your digital solution
           </h1>
 
@@ -60,17 +60,18 @@ const HiringProcess = () => {
 
         {/* RIGHT FORM */}
         <div className="flex justify-center md:justify-end">
-          <div className="w-full max-w-sm sm:max-w-md p-5 sm:p-6 bg-white border border-gray-300 rounded-xl shadow-sm">
 
-            <h2 className="text-xl sm:text-2xl font-bold mb-5 sm:mb-6 text-black text-center">
+          <div className="w-full max-w-xs sm:max-w-sm p-4 sm:p-5 bg-white border border-gray-300 rounded-xl shadow-sm">
+
+            <h2 className="text-lg sm:text-xl font-bold mb-4 text-black text-center">
               Contact Us
             </h2>
 
-            <form ref={form} onSubmit={sendEmail} className="space-y-4">
+            <form ref={form} onSubmit={sendEmail} className="space-y-3">
 
               {/* Name */}
               <div>
-                <label className="block text-black font-semibold text-xs mb-1">
+                <label className="block text-black font-semibold text-[12px] mb-1">
                   Full Name
                 </label>
                 <input type="text" name="from_name" required className={inputStyle} />
@@ -78,7 +79,7 @@ const HiringProcess = () => {
 
               {/* Email */}
               <div>
-                <label className="block text-black font-semibold text-xs mb-1">
+                <label className="block text-black font-semibold text-[12px] mb-1">
                   Email
                 </label>
                 <input type="email" name="reply_to" required className={inputStyle} />
@@ -86,7 +87,7 @@ const HiringProcess = () => {
 
               {/* Message */}
               <div>
-                <label className="block text-black font-semibold text-xs mb-1">
+                <label className="block text-black font-semibold text-[12px] mb-1">
                   Message
                 </label>
                 <textarea name="message" rows="3" required className={inputStyle} />
@@ -95,7 +96,7 @@ const HiringProcess = () => {
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full px-6 py-3 text-sm font-semibold text-white bg-[#1C39BB]
+                className="w-full px-5 py-2.5 text-sm font-semibold text-white bg-[#1C39BB]
                 rounded-lg hover:bg-blue-800 transition-all shadow-sm"
               >
                 SUBMIT
@@ -108,6 +109,7 @@ const HiringProcess = () => {
               )}
             </form>
           </div>
+
         </div>
 
       </div>

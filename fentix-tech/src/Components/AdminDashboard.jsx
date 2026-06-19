@@ -11,17 +11,18 @@ const StatusBadge = ({ status }) => {
   };
 
   return (
-    <span
-      className={`px-2 py-1 text-xs rounded-full border ${style[status]}`}
-    >
+    <span className={`px-2 py-1 text-xs rounded-full border ${style[status]}`}>
       {status}
     </span>
   );
 };
 
-// FILE URL HELPER
+// SAFE URL HELPER (CV + OFFER)
 const getFileUrl = (path) => {
   if (!path) return null;
+
+  if (path.startsWith("http")) return path;
+
   return `http://localhost:8000/${path.replace(/\\/g, "/")}`;
 };
 
@@ -32,8 +33,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const getToken = () =>
-    localStorage.getItem("token");
+  const getToken = () => localStorage.getItem("token");
 
   // LOGOUT
   const handleLogout = () => {
@@ -53,11 +53,7 @@ export default function AdminDashboard() {
         },
       });
 
-      if (!res.ok) {
-        throw new Error(
-          "Failed to fetch candidates"
-        );
-      }
+      if (!res.ok) throw new Error("Failed to fetch candidates");
 
       const data = await res.json();
       setApps(data);
@@ -75,26 +71,16 @@ export default function AdminDashboard() {
   // STATUS UPDATE
   const setStatus = async (id, status) => {
     try {
-      const res = await fetch(
-        `${API}/${id}/status`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type":
-              "application/json",
-            Authorization: `Bearer ${getToken()}`,
-          },
-          body: JSON.stringify({
-            status,
-          }),
-        }
-      );
+      const res = await fetch(`${API}/${id}/status`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+        },
+        body: JSON.stringify({ status }),
+      });
 
-      if (!res.ok) {
-        throw new Error(
-          "Status update failed"
-        );
-      }
+      if (!res.ok) throw new Error("Status update failed");
 
       fetchCandidates();
     } catch (err) {
@@ -105,26 +91,16 @@ export default function AdminDashboard() {
   // SEND OFFER
   const sendOffer = async (id) => {
     try {
-      const res = await fetch(
-        `${API}/${id}/send-offer`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${getToken()}`,
-          },
-        }
-      );
+      const res = await fetch(`${API}/${id}/send-offer`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
 
-      if (!res.ok) {
-        throw new Error(
-          "Offer generation failed"
-        );
-      }
+      if (!res.ok) throw new Error("Offer generation failed");
 
-      alert(
-        "Offer generated successfully"
-      );
-
+      alert("Offer generated successfully");
       fetchCandidates();
     } catch (err) {
       alert(err.message);
@@ -137,15 +113,11 @@ export default function AdminDashboard() {
 
     return apps.filter((a) => {
       const match =
-        `${a.firstName} ${a.lastName} ${a.email} ${a.domain} ${a.university}`
+        `${a.firstName} ${a.lastName} ${a.email} ${a.domain} ${a.institute}`
           .toLowerCase()
           .includes(q);
 
-      return (
-        match &&
-        (filter === "all" ||
-          a.status === filter)
-      );
+      return match && (filter === "all" || a.status === filter);
     });
   }, [apps, search, filter]);
 
@@ -159,10 +131,8 @@ export default function AdminDashboard() {
             <h1 className="text-2xl font-bold text-gray-800">
               Admin Dashboard
             </h1>
-
             <p className="text-sm text-gray-500">
-              Manage applications &
-              hiring pipeline
+              Manage applications & hiring pipeline
             </p>
           </div>
 
@@ -178,32 +148,20 @@ export default function AdminDashboard() {
         <div className="bg-white p-4 rounded-2xl border flex flex-col md:flex-row gap-3">
           <input
             value={search}
-            onChange={(e) =>
-              setSearch(e.target.value)
-            }
+            onChange={(e) => setSearch(e.target.value)}
             placeholder="Search candidates..."
             className="border px-4 py-2 rounded-lg w-full"
           />
 
           <select
             value={filter}
-            onChange={(e) =>
-              setFilter(e.target.value)
-            }
+            onChange={(e) => setFilter(e.target.value)}
             className="border px-4 py-2 rounded-lg"
           >
-            <option value="all">
-              All
-            </option>
-            <option value="pending">
-              Pending
-            </option>
-            <option value="accepted">
-              Accepted
-            </option>
-            <option value="rejected">
-              Rejected
-            </option>
+            <option value="all">All</option>
+            <option value="pending">Pending</option>
+            <option value="accepted">Accepted</option>
+            <option value="rejected">Rejected</option>
           </select>
         </div>
 
@@ -225,74 +183,36 @@ export default function AdminDashboard() {
             <table className="w-full text-sm">
               <thead className="bg-gray-100 text-gray-600 text-xs">
                 <tr>
-                  <th className="p-3 text-left">
-                    Applicant
-                  </th>
-                  <th className="p-3 text-left">
-                    Email
-                  </th>
-                  <th className="p-3 text-left">
-                    WhatsApp
-                  </th>
-                  <th className="p-3 text-left">
-                    Domain
-                  </th>
-                  <th className="p-3 text-left">
-                    University
-                  </th>
-                  <th className="p-3 text-left">
-                    CV
-                  </th>
-                  <th className="p-3 text-left">
-                    Offer
-                  </th>
-                  <th className="p-3 text-left">
-                    Applied At
-                  </th>
-                  <th className="p-3 text-left">
-                    Status
-                  </th>
-                  <th className="p-3 text-left">
-                    Actions
-                  </th>
+                  <th className="p-3 text-left">Applicant</th>
+                  <th className="p-3 text-left">Email</th>
+                  <th className="p-3 text-left">WhatsApp</th>
+                  <th className="p-3 text-left">Domain</th>
+                  <th className="p-3 text-left">CV</th>
+                  <th className="p-3 text-left">Offer</th>
+                  <th className="p-3 text-left">Applied At</th>
+                  <th className="p-3 text-left">Status</th>
+                  <th className="p-3 text-left">Actions</th>
                 </tr>
               </thead>
 
               <tbody>
                 {filtered.map((a) => (
-                  <tr
-                    key={a._id}
-                    className="border-t hover:bg-gray-50"
-                  >
+                  <tr key={a._id} className="border-t hover:bg-gray-50">
+
                     <td className="p-3 font-medium">
-                      {a.firstName}{" "}
-                      {a.lastName}
+                      {a.firstName} {a.lastName}
                     </td>
 
-                    <td className="p-3">
-                      {a.email}
-                    </td>
-
-                    <td className="p-3">
-                      {a.whatsapp}
-                    </td>
-
-                    <td className="p-3">
-                      {a.domain}
-                    </td>
-
-                    <td className="p-3">
-                      {a.university}
-                    </td>
+                    <td className="p-3">{a.email}</td>
+                    <td className="p-3">{a.whatsapp}</td>
+                    <td className="p-3">{a.domain}</td>
 
                     {/* CV */}
                     <td className="p-3">
                       {a.resumePath ? (
                         <div className="flex gap-2">
                           <a
-                            href={getFileUrl(
-                              a.resumePath
-                            )}
+                            href={getFileUrl(a.resumePath)}
                             target="_blank"
                             rel="noreferrer"
                             className="text-blue-600 text-xs"
@@ -301,9 +221,7 @@ export default function AdminDashboard() {
                           </a>
 
                           <a
-                            href={getFileUrl(
-                              a.resumePath
-                            )}
+                            href={getFileUrl(a.resumePath)}
                             download
                             className="text-green-600 text-xs"
                           >
@@ -311,91 +229,68 @@ export default function AdminDashboard() {
                           </a>
                         </div>
                       ) : (
-                        <span className="text-gray-400 text-xs">
-                          No CV
-                        </span>
+                        <span className="text-gray-400 text-xs">No CV</span>
                       )}
                     </td>
 
                     {/* OFFER */}
                     <td className="p-3">
-                      {a.offerLetterUrl ? (
-                        <a
-                          href={`http://localhost:8000${a.offerLetterUrl}`}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-blue-600 text-xs"
-                        >
-                          View Offer
-                        </a>
-                      ) : (
-                        <span className="text-gray-400 text-xs">
-                          Not Generated
-                        </span>
-                      )}
-                    </td>
+  {a.offerLetterUrl ? (
+    <a
+      href={getFileUrl(a.offerLetterUrl)}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-600 text-xs hover:underline"
+    >
+      View Offer
+    </a>
+  ) : (
+    <span className="text-gray-400 text-xs">
+      Not Generated
+    </span>
+  )}
+</td>
 
                     {/* DATE */}
                     <td className="p-3 text-xs text-gray-600">
-                      {new Date(
-                        a.createdAt
-                      ).toLocaleString()}
+                      {new Date(a.createdAt).toLocaleString()}
                     </td>
 
                     {/* STATUS */}
                     <td className="p-3">
-                      <StatusBadge
-                        status={a.status}
-                      />
+                      <StatusBadge status={a.status} />
                     </td>
 
                     {/* ACTIONS */}
                     <td className="p-3 flex gap-2 flex-wrap">
-
                       <button
-                        onClick={() =>
-                          setStatus(
-                            a._id,
-                            "accepted"
-                          )
-                        }
+                        onClick={() => setStatus(a._id, "accepted")}
                         className="text-xs px-2 py-1 bg-green-50 text-green-700 rounded-lg"
                       >
                         Accept
                       </button>
 
                       <button
-                        onClick={() =>
-                          setStatus(
-                            a._id,
-                            "rejected"
-                          )
-                        }
+                        onClick={() => setStatus(a._id, "rejected")}
                         className="text-xs px-2 py-1 bg-red-50 text-red-600 rounded-lg"
                       >
                         Reject
                       </button>
 
                       <button
-                        onClick={() =>
-                          sendOffer(a._id)
-                        }
+                        onClick={() => sendOffer(a._id)}
                         className="text-xs px-2 py-1 bg-blue-50 text-blue-700 rounded-lg"
                       >
                         Send Offer
                       </button>
-
                     </td>
+
                   </tr>
                 ))}
 
-                {filtered.length ===
-                  0 && (
+                {filtered.length === 0 && (
                   <tr>
-                    <td
-                      colSpan="10"
-                      className="text-center p-6 text-gray-400"
-                    >
+                    <td colSpan="9" className="text-center p-6 text-gray-400">
                       No candidates found
                     </td>
                   </tr>

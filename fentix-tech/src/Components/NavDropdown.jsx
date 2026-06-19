@@ -42,7 +42,7 @@ const NavDropdown = ({ onApply, onApplyDeveloper }) => {
       {/* Trigger Button */}
       <button
   onClick={toggleDropdown}
-  className="flex items-center gap-0.5 px-4 py-2 text-sm font-medium bg-white text-[#1C39BB] border-2 border-[#1C39BB] rounded-lg transition-all duration-300 hover:text-orange-400 hover:border-orange-400"
+  className=" cursor-pointer flex items-center gap-0.5 px-4 py-2 text-sm font-medium bg-white text-[#1C39BB] border-2 border-[#1C39BB] rounded-lg transition-all duration-300 hover:text-orange-400 hover:border-orange-400"
 >
   Apply Now
 
@@ -64,7 +64,7 @@ const NavDropdown = ({ onApply, onApplyDeveloper }) => {
               setIsOpen(false);
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="w-full text-left px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-100 transition"
+            className="w-full text-left px-4 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-100 transition cursor-pointer"
           >
             Apply as Intern
           </button>
@@ -75,7 +75,7 @@ const NavDropdown = ({ onApply, onApplyDeveloper }) => {
               onApplyDeveloper?.(); // optional safe call
               setIsOpen(false);
             }}
-            className="w-full text-left px-5 py-3 text-sm font-semibold text-gray-800 hover:bg-gray-100 border-t border-gray-100 transition"
+            className="cursor-pointer w-full text-left px-5 py-3 text-sm font-semibold text-gray-800 hover:bg-gray-100 border-t border-gray-100 transition"
           >
             Apply as Developer
           </button>

@@ -6,6 +6,7 @@ import HeroSection from "./Components/HeroSection";
 import AboutSection from "./Components/AboutSection";
 import ServicesSection from "./Components/ServicesSection";
 import ExpertiseSection from "./Components/ExpertiseSection";
+import Internship from "./Components/Internship";
 import ProjectSection from "./Components/ProjectSection";
 import OurTalent from "./Components/OurTalent";
 import HiringProcess from "./Components/HiringProcess";
@@ -69,7 +70,7 @@ const App = () => {
         onLogout={handleLogout}
       />
 
-      <main className="pt-20">
+      <main className="pt-20 bg-transparent">
 
         {/* =========================
             LOGIN VIEW
@@ -98,10 +99,27 @@ const App = () => {
               HOME PAGE
           ========================= */
           <>
-            <div id="home"><HeroSection /></div>
+             <div id="home">
+  <HeroSection
+    onApply={() => {
+      setIsApplyView(true);
+      setIsDashboardView(false);
+      setIsLoginView(false);
+    }}
+  />
+</div>
             <div id="about"><AboutSection /></div>
             <div id="services"><ServicesSection /></div>
             <div id="expertise"><ExpertiseSection /></div>
+            <div id="internship">
+  <Internship
+    onApply={() => {
+      setIsApplyView(true);
+      setIsDashboardView(false);
+      setIsLoginView(false);
+    }}
+  />
+</div>
             <ProjectSection />
             <OurTalent />
             <HiringProcess />
